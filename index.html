@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Floating Navbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body class=" bg-gray-100">
+
+    <!-- Floating Navbar -->
+    <nav class="navbar fixed top-0 left-0 w-full bg-white shadow-lg z-50 ">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-lg font-bold text-gray-700">Cyndy-Telecom</div>
+            <div class="hidden md:flex space-x-4">
+                <a href="./index.html" class="text-gray-600 hover:text-blue-500">Home</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">Services</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">About</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">Contact</a>
+            </div>
+            <button id="menuToggle" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+            <div class="flex justify-end p-4">
+                <button id="closeMenu" class="focus:outline-none">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <a href="#" class="block px-4 py-2 text-gray-600 hover:text-blue-500">Home</a>
+            <a href="#" class="block px-4 py-2 text-gray-600 hover:text-blue-500">Services</a>
+            <a href="#" class="block px-4 py-2 text-gray-600 hover:text-blue-500">About</a>
+            <a href="#" class="block px-4 py-2 text-gray-600 hover:text-blue-500">Contact</a>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="  p-6 max-w-md w-full mx-auto bg-white rounded-xl shadow-md space-y-6 mt-32">
+        <div class="text-center">
+          <h2 class="text-lg font-medium">Welcome, what are you <span class="text-red-600">purchasing today?</span></h2>
+        </div>
+        
+        <!-- Service Icons -->
+        <div id="serviceList" class="grid grid-cols-3 gap-4 text-center">
+          <!-- Each service is a button with an icon and a label -->
+          <button onclick="navigateToService('electricity.html')" class="flex flex-col items-center">
+            <div class="bg-red-500 text-white rounded-full p-4">
+              <i class="fas fa-bolt fa-lg"></i>
+            </div>
+            <span class="mt-2 text-sm font-medium">Electricity</span>
+          </button>
+    
+          <button class="service-item flex flex-col items-center" onclick="navigateToService('./airtimePage.html')">
+            <div class="bg-green-500 text-white rounded-full p-4">
+              <i class="fas fa-phone fa-lg"></i>
+            </div>
+            <span class="mt-2 text-sm font-medium">Airtime</span>
+          </button>
+    
+          <button class="service-item flex flex-col items-center" onclick="navigateToService('')">
+            <div class="bg-gray-500 text-white rounded-full p-4">
+              <i class="fas fa-tv fa-lg"></i>
+            </div>
+            <span class="mt-2 text-sm font-medium">Cable TV</span>
+          </button>
+    
+          <button class="service-item flex flex-col items-center" onclick="navigateToService('electricity.html')">
+            <div class="bg-red-500 text-white rounded-full p-4">
+              <i class="fas fa-globe fa-lg"></i>
+            </div>
+            <span class="mt-2 text-sm font-medium">Internet</span>
+          </button>
+    
+          <button class="service-item flex flex-col items-center" onclick="navigateToService('electricity.html')">
+            <div class="bg-green-600 text-white rounded-full p-4">
+              <i class="fas fa-graduation-cap fa-lg"></i>
+            </div>
+            <span class="mt-2 text-sm font-medium">Education</span>
+          </button>
+    
+          <button class="service-item flex flex-col items-center" onclick="navigateToService('electricity.html')">
+            <div class="bg-blue-600 text-white rounded-full p-4">
+              <i class="fas fa-futbol fa-lg"></i>
+            </div>
+            <span class="mt-2 text-sm font-medium">Betting</span>
+          </button>
+        </div>
+        
+        <!-- Search bar -->
+        <div class="mt-4">
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+              <i class="fas fa-search"></i>
+            </span>
+            <input 
+              id="searchInput"
+              type="text" 
+              oninput="filterServices()"
+              class="w-full pl-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Search for a service">
+          </div>
+        </div>
+      </div>
+      
+
+
+      <footer class="bg-gray-800 text-white py-8 mt-36 ">
+        <div class="container mx-auto flex flex-wrap justify-between">
+          <!-- Logo and description -->
+          <div class="w-full md:w-1/3 mb-4">
+            <h2 class="text-2xl font-bold mb-2">Cyndy Telecom</h2>
+            <p class="text-gray-400">Your one-stop solution for all virtual top-up needs. Fast, reliable, and secure transactions.</p>
+          </div>
+      
+          <!-- Links -->
+          <div class="w-full md:w-1/3 mb-4">
+            <h3 class="text-lg font-semibold mb-2">Quick Links</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-gray-400">Home</a></li>
+              <li><a href="#" class="hover:text-gray-400">About Us</a></li>
+              <li><a href="#" class="hover:text-gray-400">Services</a></li>
+              <li><a href="#" class="hover:text-gray-400">Contact</a></li>
+            </ul>
+          </div>
+      
+          <!-- Contact Info -->
+          <div class="w-full md:w-1/2 mb-4">
+            <h3 class="text-lg font-semibold mb-2">Contact Us</h3>
+            <p>Email: <a href="mailto:info@vtu.com" class="hover:text-gray-400">elemmamarycynthia7@gmail.com</a></p>
+            <p>Phone: <a href="tel:+1234567890" class="hover:text-gray-400">09169682117</a></p>
+            <p>Follow us:</p>
+            <div class="flex space-x-4 mt-2">
+              <a href="#" class="text-gray-400 hover:text-gray-200"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-gray-400 hover:text-gray-200"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-gray-400 hover:text-gray-200"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      
+        <div class="text-center mt-8 border-t border-gray-700 pt-4">
+          <p class="text-gray-400">© 2024 VTU Service. All rights reserved.</p>
+        </div>
+      </footer>
+      
+   <script src="main.js"></script>
+    
+
+</body>
+</html>

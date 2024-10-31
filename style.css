@@ -1,0 +1,8 @@
+  /* Optional: Add a dark overlay when the menu is open */
+  #mobileMenu:target {
+    backdrop-filter: blur(5px);
+}
+ /* Additional custom styles */
+ .navbar {
+    transition: background-color 0.3s ease;
+}
